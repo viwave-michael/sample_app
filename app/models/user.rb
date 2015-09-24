@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
             uniqueness: { case_sensitive: false }
 
   has_secure_password
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 },
+    allow_blank: true # It's for updating user. For new user has_secure_password 
+                      # will enforce password not being blank.
 
   # Returns the hash digest of the given string.
   def User.digest(string)

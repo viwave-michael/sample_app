@@ -64,6 +64,11 @@ class User < ActiveRecord::Base
     reset_sent_at < 2.hours.ago
   end
 
+  # Define a proto-feed
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
   private
 
   # Creates and assigns the activation token and digest.
